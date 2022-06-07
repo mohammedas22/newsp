@@ -57,8 +57,8 @@
                 @endforeach
             </select>
         </div>
-
-        <div class="card-footer col-4">
+    </div>
+        <div class="card-footer">
             <button type="button" onclick="performStore()" class="btn btn-primary">Stroe</button>
             <a href="{{route('articles.index')}}" type="submit" class="btn btn-success">return to index</a>
             </div>
@@ -72,13 +72,13 @@
     function performStore(){
         let formData = new FormData ();
         formData.append('title' , document.getElementById('title').value);
-        formData.append('short_description' , document.getElementById('short_description').value);
-        formData.append('full_description' , document.getElementById('full_description').value);
-        formData.append('images' , document.getElementById('images').file[0];
-        formData.append('seen_count' , document.getElementById('seen_count').value);
-        formData.append('category_id' , document.getElementById('category_id').value);
-        formData.append('author_id' , document.getElementById('author_id').value);
-        store('/cms/admin/articles',formData);
+        // formData.append('short_description' , document.getElementById('short_description').value);
+        // formData.append('full_description' , document.getElementById('full_description').value);
+        // formData.append('images' , document.getElementById('images').file[0];
+        // formData.append('seen_count' , document.getElementById('seen_count').value);
+        // formData.append('category_id' , document.getElementById('category_id').value);
+        // formData.append('author_id' , document.getElementById('author_id').value);
+        // store('/cms/admin/articles',formData);
     }
 </script>
 @endsection

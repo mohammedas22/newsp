@@ -58,7 +58,7 @@ class ViewerController extends Controller
             if (request()->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-                $image->move('storage/images/admin', $imageName);
+                $image->move('storage/images/viewer', $imageName);
                 $users->image = $imageName;
                 }
             // $roles = Role::findOrFail($request->get('role_id'));
@@ -127,10 +127,16 @@ class ViewerController extends Controller
             $viewers =Viewer::findOrFail($id);
             $viewers->email = $request->get('email');
             $viewers->password = Hash::make($request->get('password'));
+            $viewers->bio = $request->get('bio');
             $isSaved = $viewers->save();
             if($isSaved){
             $users = $viewers->users;
-
+            if (request()->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                $image->move('storage/images/viewer', $imageName);
+                $users->image = $imageName;
+                }
             // $roles = Role::findOrFail($request->get('role_id'));
             // $viewers->assignRole($roles->name);
             $users->first_name = $request->get('first_name');

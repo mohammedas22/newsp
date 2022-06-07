@@ -24,8 +24,6 @@ class CreateUsersTable extends Migration
             $table->morphs('actor');
             $table->foreignId('Country_id');
             $table->foreign('Country_id')->on('Countries')->references('id');
-            $table->foreignId('setting_id');
-            $table->foreign('setting_id')->on('settings')->references('id');
             $table->timestamps();
             
         });

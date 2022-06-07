@@ -78,7 +78,7 @@
 @section('script')
 <script>
 function performDestroy(id ,reference){
-    let url = '/cms/admin/Contact_requests/' +   id;
+    let url = '/cms/admin/contact_requests/' +   id;
     confirmDestroy(url ,reference);
 }
 </script>

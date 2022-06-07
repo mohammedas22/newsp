@@ -49,7 +49,7 @@
             </select>
         </div>
         <div class="card-footer">
-            <button type="button" onclick="performStore({{$contact_requests->id}})" class="btn btn-primary">Update</button>
+            <button type="button" onclick="performUpdate({{$contact_requests->id}})" class="btn btn-primary">Update</button>
             <a href="{{route('contact_requests.index')}}" class="btn btn-success">return to index</a>
         </div>
     </form>

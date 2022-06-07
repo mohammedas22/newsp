@@ -43,15 +43,7 @@
             <label for="birth_date">birth_date</label>
             <input type="date" class="form-control" name="birth_date" id="birth_date" value="{{$admins->user->birth_date}}" placeholder="birth_date">
         </div>
-        {{-- <div class="form-group col-sm-4">
-            <label for="setting_id">name_author</label>
-            <select class="form-select form-select-sm" name="setting_id" style="width: 100%;"
-                id="setting_id" aria-label=".form-select-sm example">
-                @foreach ($settings as $setting)
-                <option value="{{ $setting->id }}">{{ $setting->email}}</option>
-                @endforeach
-            </select>
-        </div> --}}
+    
         <div class="form-group col-sm-4">
             <label for="Country_id">name_author</label>
             <select class="form-select form-select-sm" name="Country_id" style="width: 100%;"
@@ -81,12 +73,13 @@
                 <option value="Blocked">Blocked</option>
             </select>
         </div>
+    </div>
         <div class="card-footer">
             <button type="button" onclick="performUpdate({{$admins->id}})" class="btn btn-primary">Update</button>
             <a href="{{route('admins.index')}}" type="button" class="btn btn-success">return to index</a>
             </div>
     </form>
-</div>
+
 @endsection
 
 @section('script')

@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Viewer extends Model
 {
     use HasFactory;
-    public function Viewer(){
-        return $this->morphOne(Viewer::class ,'actor' , 'actor_type' , 'actor_id' ,'id');
+    public function user(){
+        return $this->morphOne(User::class ,'actor' , 'actor_type' , 'actor_id' ,'id');
     }
 
     public function Country(){

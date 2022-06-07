@@ -13,11 +13,8 @@ class Admin extends Model
         return $this->morphOne(User::class ,'actor' , 'actor_type' , 'actor_id' ,'id');
     }
 
-    // public function Country(){
-    //     return $this->belongsTo(Country::class);
-    // }
+    public function Country(){
+        return $this->belongsTo(Country::class);
+    }
 
-    // public function setting(){
-    //     return $this->belongsTo(Setting::class);
-    // }
 }

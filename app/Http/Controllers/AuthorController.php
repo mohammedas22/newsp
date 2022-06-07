@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Country;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
@@ -25,7 +27,8 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return response()->view('cms.authors.create');
+        $countries = Country::all();
+        return response()->view('cms.authors.create', compact('countries'));
     }
 
     /**
@@ -47,6 +50,21 @@ class AuthorController extends Controller
             $authors->add_files = $request->get('add_files');
             $isSaved = $authors->save();
             if ($isSaved) {
+                $users = new User();
+            $users->first_name = $request->get('first_name');
+            $users->last_name = $request->get('last_name');
+            $users->gender = $request->get('gender');
+            $users->status = $request->get('status');
+            $users->birth_date = $request->get('birth_date');
+            $users->Country_id = $request->get('Country_id');
+            if (request()->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                $image->move('storage/images/author', $imageName);
+                $users->image = $imageName;
+                }
+            $users->actor()->associate($authors);
+            $isSaved = $users->save();
                 return response()->json(['icon' => 'success', 'title' => 'The Author has been added successfully'], 200);
             } else {
                 return response()->json(['icon' => 'error', 'title' => 'Failed to add Author'], 400);
@@ -76,7 +94,8 @@ class AuthorController extends Controller
     public function edit($id)
     {
         $authors = Author::findOrFail($id);
-        return response()->view('cms.authors.edit' , compact('authors'));
+        $countries = Country::all();
+        return response()->view('cms.authors.edit' , compact('authors','countries'));
     }
 
     /**
@@ -100,6 +119,21 @@ class AuthorController extends Controller
             $isSaved = $authors->save();
             return ['redirect'=>route('authors.index')];
             if ($isSaved) {
+                $users = $authors->users;
+                $users->first_name = $request->get('first_name');
+                $users->last_name = $request->get('last_name');
+                $users->gender = $request->get('gender');
+                $users->status = $request->get('status');
+                $users->birth_date = $request->get('birth_date');
+                $users->Country_id = $request->get('Country_id');
+                if (request()->hasFile('image')) {
+                    $image = $request->file('image');
+                    $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                    $image->move('storage/images/author', $imageName);
+                    $users->image = $imageName;
+                    }
+                $users->actor()->associate($authors);
+                $isSaved = $users->save();
                 return response()->json(['icon' => 'success', 'title' => 'The Author has been added successfully'], 200);
             } else {
                 return response()->json(['icon' => 'error', 'title' => 'Failed to add Author'], 400);

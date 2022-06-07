@@ -40,7 +40,7 @@
             
         <div class="card-footer">
             <button type="button" onclick="performStore()" class="btn btn-primary">Stroe</button>
-            <a href="{{route('Categories.index')}}" class="btn btn-success">return to index</a>
+            <a href="{{route('categories.index')}}" class="btn btn-success">return to index</a>
             </div>
     </form>
 </div>
@@ -53,7 +53,7 @@
         formData.append('name' , document.getElementById('name').value);
         formData.append('description' , document.getElementById('description').value);
         formData.append('status' , document.getElementById('status').value);
-        store('/cms/admin/Categories',formData);
+        store('/cms/admin/categories',formData);
     }
 </script>
 @endsection

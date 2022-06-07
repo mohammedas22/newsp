@@ -13,7 +13,7 @@
     <div class="card">
         <div class="card-header">
         {{-- <h3 class="card-title">Index City</h3> --}}
-        <a href="{{route('Categories.create')}}" type="submit" class="btn btn-success">Add New category</a>
+        <a href="{{route('categories.create')}}" type="submit" class="btn btn-success">Add New category</a>
 
         <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
@@ -40,7 +40,7 @@
             </tr>
             </thead>
             <tbody>
-                @foreach ($Categories as $category )
+                @foreach ($categories as $category )
                 <tr>
                 <td>{{$category->id}}</td>
                 <td>{{$category->name}}</td>

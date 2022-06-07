@@ -39,7 +39,7 @@
             </div>
             
         <div class="card-footer">
-            <button type="button" onclick="performStore({{$categories->id}})" class="btn btn-primary">Update</button>
+            <button type="button" onclick="performUpdate({{$categories->id}})" class="btn btn-primary">Update</button>
             <a href="{{route('categories.index')}}" class="btn btn-success">return to index</a>
         </div>
     </form>
@@ -53,7 +53,7 @@
         formData.append('name' , document.getElementById('name').value);
         formData.append('description' , document.getElementById('description').value);
         formData.append('status' , document.getElementById('status').value);
-        storeRoute('/cms/admin/update_viewers/'+id,formData);
+        storeRoute('/cms/admin/update_categories/'+id,formData);
     }
 </script>
 @endsection

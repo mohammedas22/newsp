@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Author extends Model
 {
     use HasFactory;
-    public function author(){
-        return $this->morphOne(Author::class ,'actor' , 'actor_type' , 'actor_id' ,'id');
+    public function user(){
+        return $this->morphOne(user::class ,'actor' , 'actor_type' , 'actor_id' ,'id');
     }
 
     public function Country(){

@@ -33,6 +33,9 @@
             <thead>
             <tr>
                 <th>ID</th>
+                <th>name</th>
+                <th>status</th>
+                <th>image</th>
                 <th>email</th>
                 <th>password</th>
                 <th>add_files</th>
@@ -43,6 +46,9 @@
                 @foreach ($authors as $Author )
                 <tr>
                 <td>{{$Author->id}}</td>
+                <td>{{$Author->user ? $Author->user->first_name . ' ' . $Author->user->last_name : "Null"}}</td>
+                <td>{{$Author->user ? $Author->user->status : "Null"}}</td>
+                <td>  <img class="img-circle img-bordered-sm" src="{{asset('storage/images/author/'.$Author->image)}}" width="60" height="60" alt="Author Image"> </td>
                 <td>{{$Author->email}}</td>
                 <td>{{$Author->password}}</td>
                 <td>{{$Author->add_files}}</td>
@@ -62,7 +68,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{-- {{$author->links()}} --}}
+        {{$authors->links()}}
         </div>
         <!-- /.card-body -->
     </div>

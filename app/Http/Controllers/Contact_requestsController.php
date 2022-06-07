@@ -40,7 +40,6 @@ class Contact_requestsController extends Controller
     {
         $validator = validator($request->all(), [
             'email' => 'required|string|min:3|max:40',
-            'password' => 'required|string|min:3|max:20',
         ]);
         if (!$validator->fails()) {
             $contact_requests = new Contact_requests();
@@ -81,7 +80,8 @@ class Contact_requestsController extends Controller
     public function edit($id)
     {
         $contact_requests = Contact_requests::findOrFail($id);
-        return response()->view('cms.contact_requests.edit' , compact('contact_requests'));
+        $users = User::all();
+        return response()->view('cms.contact_requests.edit' , compact('contact_requests','users'));
     }
 
     /**

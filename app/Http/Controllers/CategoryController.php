@@ -38,7 +38,7 @@ class CategoryController extends Controller
     {
         $validator = validator($request->all(), [
             'name' => 'required|string|min:3|max:40',
-            'description' => 'required|string|min:3|max:20',
+            'description' => 'required|string',
         ]);
         if (!$validator->fails()) {
             $categories = new Category();
@@ -90,7 +90,7 @@ class CategoryController extends Controller
     {
         $validator = validator($request->all(), [
             'name' => 'required|string|min:3|max:40',
-            'description' => 'required|string|min:3|max:20',
+            'description' => 'required|string',
         ]);
         if (!$validator->fails()) {
             $categories = Category::findOrFail($id);

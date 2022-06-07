@@ -33,11 +33,11 @@
             <thead>
             <tr>
                 <th>ID</th>
-                {{-- <th>first_name</th> --}}
                 <th>name</th>
-                {{-- <th>last_name</th> --}}
+                <th>status</th>
+                <th>image</th>
                 <th>email</th>
-                <th>password</th>
+                {{-- <th>password</th> --}}
                 <th>Seeting</th>
             </tr>
             </thead>
@@ -45,11 +45,11 @@
                 @foreach ($admins as $admin )
                 <tr>
                 <td>{{$admin->id}}</td>
-                {{-- <td>{{$admin->user->first_name}}</td> --}}
                 <td>{{$admin->user ? $admin->user->first_name . ' ' . $admin->user->last_name : "Null"}}</td>
-                {{-- <td>{{$admin->user->last_name}}</td> --}}
+                <td>{{$admin->user ? $admin->user->status : "Null"}}</td>
+                <td>  <img class="img-circle img-bordered-sm" src="{{asset('cms/storage/images/admin/'.$admin->image)}}" width="60" height="60" alt="User Image"> </td>
                 <td>{{$admin->email}}</td>
-                <td>{{$admin->password}}</td>
+                {{-- <td>{{$admin->password}}</td> --}}
                 <td>
                     <div class="btn-group">
                         <a href="{{route('admins.edit',$admin->id)}}" class="btn btn-info" title="Edit">
@@ -69,7 +69,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{$admins->links()}}
+        {{-- {{$admins->links()}} --}}
         </div>
         <!-- /.card-body -->
     </div>

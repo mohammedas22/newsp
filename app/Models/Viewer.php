@@ -16,11 +16,11 @@ class Viewer extends Model
         return $this->belongsTo(Country::class);
     }
 
-    public function setting(){
-        return $this->belongsTo(Setting::class);
-    }
-
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
     }
 }

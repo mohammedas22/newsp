@@ -16,10 +16,6 @@ class Author extends Model
         return $this->belongsTo(Country::class);
     }
 
-    public function setting(){
-        return $this->belongsTo(Setting::class);
-    }
-
     public function categories(){
         return $this->belongsToMany(Category::class , 'author_categories') ;
     }

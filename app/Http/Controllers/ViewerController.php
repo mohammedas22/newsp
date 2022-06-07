@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Models\User;
 use App\Models\Viewer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ViewerController extends Controller
 {
@@ -14,7 +17,7 @@ class ViewerController extends Controller
      */
     public function index()
     {
-        $viewers = Viewer::orderBy('id', 'desc')->Paginate(5);
+        $viewers = Viewer::with('user')->orderBy('id' ,'desc')->get();
         return response()->view('cms.viewers.index', compact('viewers'));
     }
 
@@ -25,7 +28,8 @@ class ViewerController extends Controller
      */
     public function create()
     {
-        return response()->view('cms.viewers.create');
+        $countries = Country::all();
+        return response()->view('cms.viewers.create' ,compact('countries'));
     }
 
     /**
@@ -36,24 +40,47 @@ class ViewerController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = validator($request->all(), [
+        $validator = Validator($request->all(),[
             'email' => 'required|string|min:3|max:40',
-            // 'password' => 'required|string|min:3|max:20',
-        ]);
-        if (!$validator->fails()) {
+            'password' => 'required|string|min:3|max:30',
+        ]
+    );
+
+        if(!$validator->fails()){
+
             $viewers = new Viewer();
             $viewers->email = $request->get('email');
-            $viewers->password = $request->get('password');
+            $viewers->password = Hash::make($request->get('password'));
             $viewers->bio = $request->get('bio');
             $isSaved = $viewers->save();
-            if ($isSaved) {
-                return response()->json(['icon' => 'success', 'title' => 'The viewer has been added successfully'], 200);
-            } else {
-                return response()->json(['icon' => 'error', 'title' => 'Failed to add viewer'], 400);
+            if($isSaved){
+            $users = new User();
+            if (request()->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                $image->move('storage/images/admin', $imageName);
+                $users->image = $imageName;
+                }
+            // $roles = Role::findOrFail($request->get('role_id'));
+            // $viewers->assignRole($roles->name);
+            $users->first_name = $request->get('first_name');
+            $users->last_name = $request->get('last_name');
+            $users->gender = $request->get('gender');
+            $users->status = $request->get('status');
+            $users->birth_date = $request->get('birth_date');
+            $users->Country_id = $request->get('Country_id');
+            $users->actor()->associate($viewers);
+            $isSaved = $users->save();
+            return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);
+
             }
-        } else {
-            return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
+            else{
+                return response()->json(['icon' => 'error' , 'title' => 'Failed to add admin'] , 400);
+            }
         }
+            else{
+                return response()->json(['icon' => 'error' , 'title' => $validator->getMessageBag()->first()] , 400);
+            }
     }
 
     /**
@@ -76,7 +103,8 @@ class ViewerController extends Controller
     public function edit($id)
     {
         $viewers = Viewer::findOrFail($id);
-        return response()->view('cms.viewers.edit' , compact('viewers'));
+        $countries = Country::all();
+        return response()->view('cms.viewers.edit' , compact('viewers' ,'countries'));
     }
 
     /**
@@ -88,25 +116,43 @@ class ViewerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = validator($request->all(), [
+        $validator = Validator($request->all(),[
             'email' => 'required|string|min:3|max:40',
-            // 'password' => 'required|string|min:3|max:20',
-        ]);
-        if (!$validator->fails()) {
-            $viewers = Viewer::findOrFail($id);
+            'password' => 'required|string|min:3|max:30',
+        ]
+    );
+
+        if(!$validator->fails()){
+
+            $viewers =Viewer::findOrFail($id);
             $viewers->email = $request->get('email');
-            $viewers->password = $request->get('password');
-            $viewers->bio = $request->get('bio');
+            $viewers->password = Hash::make($request->get('password'));
             $isSaved = $viewers->save();
-            return ['redirect'=>route('viewers.index')];
-            if ($isSaved) {
-                return response()->json(['icon' => 'success', 'title' => 'The viewer has been added successfully'], 200);
-            } else {
-                return response()->json(['icon' => 'error', 'title' => 'Failed to add viewer'], 400);
+            if($isSaved){
+            $users = $viewers->users;
+
+            // $roles = Role::findOrFail($request->get('role_id'));
+            // $viewers->assignRole($roles->name);
+            $users->first_name = $request->get('first_name');
+            $users->last_name = $request->get('last_name');
+            $users->gender = $request->get('gender');
+            $users->status = $request->get('status');
+            // $users->image = $request->get('image');
+            $users->birth_date = $request->get('birth_date');
+            $users->Country_id = $request->get('Country_id');
+            // $users->setting_id = $request->get('setting_id');
+            $users->actor()->associate($viewers);
+            $isSaved = $users->save();
+            return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);
+
             }
-        } else {
-            return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
+            else{
+                return response()->json(['icon' => 'error' , 'title' => 'Failed to add admin'] , 400);
+            }
         }
+            else{
+                return response()->json(['icon' => 'error' , 'title' => $validator->getMessageBag()->first()] , 400);
+            }
     }
 
     /**

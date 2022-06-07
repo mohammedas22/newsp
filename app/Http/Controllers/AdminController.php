@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Country;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -26,7 +29,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return response()->view('cms.admin.create');
+        $countries = Country::all();
+        return response()->view('cms.admin.create', compact('countries'));
     }
 
     /**
@@ -39,7 +43,7 @@ class AdminController extends Controller
     {
         $validator = Validator($request->all(),[
             'email' => 'required|string|min:3|max:40',
-            'password' => 'required|string|min:3|max:30',
+            // 'password' => 'required|string|min:3|max:30',
         ]
     );
 
@@ -47,12 +51,27 @@ class AdminController extends Controller
 
             $admins = new Admin();
             $admins->email = $request->get('email');
-            $admins->password = $request->get('password');
-
+            $admins->password = Hash::make($request->get('password'));
             $isSaved = $admins->save();
-
             if($isSaved){
-                return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);
+            $users = new User();
+            if (request()->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                $image->move('storage/images/admin', $imageName);
+                $users->image = $imageName;
+                }
+            // $roles = Role::findOrFail($request->get('role_id'));
+            // $admins->assignRole($roles->name);
+            $users->first_name = $request->get('first_name');
+            $users->last_name = $request->get('last_name');
+            $users->gender = $request->get('gender');
+            $users->status = $request->get('status');
+            $users->birth_date = $request->get('birth_date');
+            $users->Country_id = $request->get('Country_id');
+            $users->actor()->associate($admins);
+            $isSaved = $users->save();
+            return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);
 
             }
             else{
@@ -84,7 +103,8 @@ class AdminController extends Controller
     public function edit($id)
     {
         $admins = Admin::findOrFail($id);
-        return response()->view('cms.admin.edit' , compact('admins'));
+        $countries = Country::all();
+        return response()->view('cms.admin.edit' , compact('admins','countries'));
     }
 
     /**
@@ -97,29 +117,39 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator($request->all(),[
-            'email' => 'required|string|min:3|max:20',
-            'password' => 'required|min:3|max:30',
+            'email' => 'required|string|min:3|max:40',
+            // 'password' => 'required|string|min:3|max:30',
         ]
     );
 
         if(!$validator->fails()){
 
-            $admins = Admin::findOrFail($id);
+            $admins =Admin::findOrFail($id);
             $admins->email = $request->get('email');
-            $admins->password = $request->get('password');
-
+            // $admins->password = Hash::make($request->get('password'));
             $isSaved = $admins->save();
-            return ['redirect'=>route('admins.index')];
             if($isSaved){
-                return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);
+            $users = $admins->users;
+            // $roles = Role::findOrFail($request->get('role_id'));
+            // $admins->assignRole($roles->name);
+            $users->first_name = $request->get('first_name');
+            $users->last_name = $request->get('last_name');
+            $users->gender = $request->get('gender');
+            $users->status = $request->get('status');
+            $users->birth_date = $request->get('birth_date');
+            $users->Country_id = $request->get('Country_id');
+            $users->actor()->associate($admins);
+            $isSaved = $users->save();
+            return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);
+
             }
             else{
                 return response()->json(['icon' => 'error' , 'title' => 'Failed to add admin'] , 400);
             }
         }
-        else{
-            return response()->json(['icon' => 'error' , 'title' => $validator->getMessageBag()->first()] , 400);
-        }
+            else{
+                return response()->json(['icon' => 'error' , 'title' => $validator->getMessageBag()->first()] , 400);
+            }
     }
 
     /**

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Like extends Model
 {
     use HasFactory;
     public function viewer(){
@@ -16,7 +16,8 @@ class Comment extends Model
         return $this->belongsTo(Article::class);
     }
 
-    public function likes(){
-        return $this->hasMany(Like::class);
+    public function comment(){
+        return $this->belongsTo(Comment::class);
     }
+
 }

@@ -50,10 +50,6 @@ class User extends Authenticatable
         return $this->belongsTo(Country::class);
     }
 
-    public function setting(){
-        return $this->belongsTo(Setting::class);
-    }
-
     public function contact_requests(){
         return $this->hasMany(Contact_requests::class);
     }

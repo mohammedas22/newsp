@@ -244,7 +244,7 @@
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                <i class="nav-icon far fa-envelope"></i>
+                    <i class="fas fa-user"></i>
                 <p>
                     Admin
                     <i class="fas fa-angle-left right"></i>
@@ -268,7 +268,7 @@
 
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                <i class="nav-icon far fa-envelope"></i>
+                    <i class="fas fa-at"></i>
                 <p>
                     Author
                     <i class="fas fa-angle-left right"></i>
@@ -283,7 +283,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('authors.create')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                        <i class="fas fa-plus"></i>
                     <p>cerate</p>
                     </a>
                 </li>
@@ -292,7 +292,7 @@
 
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                <i class="nav-icon far fa-envelope"></i>
+                    <i class="fas fa-street-view"></i>
                 <p>
                     Viewers
                     <i class="fas fa-angle-left right"></i>
@@ -307,7 +307,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('viewers.create')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                        <i class="fas fa-plus"></i>
                     <p>cerate</p>
                     </a>
                 </li>
@@ -318,20 +318,66 @@
                 <a href="#" class="nav-link">
                 <i class="nav-icon far fa-envelope"></i>
                 <p>
-                    setting
+                    articles
                     <i class="fas fa-angle-left right"></i>
                 </p>
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{route('settings.index')}}" class="nav-link">
+                    <a href="{{route('articles.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Inbox</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('settings.create')}}" class="nav-link">
+                    <a href="{{route('articles.create')}}" class="nav-link">
+                        <i class="fas fa-plus"></i>
+                    <p>cerate</p>
+                    </a>
+                </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                    Category
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('categories.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
+                    <p>Inbox</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('categories.create')}}" class="nav-link">
+                        <i class="fas fa-plus"></i>
+                    <p>cerate</p>
+                    </a>
+                </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                    contact_requests
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('contact_requests.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Inbox</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('contact_requests.create')}}" class="nav-link">
+                        <i class="fas fa-plus"></i>
                     <p>cerate</p>
                     </a>
                 </li>

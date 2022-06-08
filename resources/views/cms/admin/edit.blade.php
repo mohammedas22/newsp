@@ -30,10 +30,10 @@
             <label for="email">email</label>
             <input type="text" class="form-control" name="email" value="{{$admins->email}}"  id="email" placeholder="email">
         </div>
-        <div class="form-group col-md-4">
+        {{-- <div class="form-group col-md-4">
             <label for="password">password</label>
             <input type="text" class="form-control" name="password" value="{{$admins->password}}" id="password" placeholder="password">
-        </div>
+        </div> --}}
         <div class="form-group col-md-4">
             <label for="image">image</label>
             <input type="file" class="form-control" name="image" value="{{$admins->user->image}}" id="image" placeholder="image">
@@ -43,7 +43,7 @@
             <label for="birth_date">birth_date</label>
             <input type="date" class="form-control" name="birth_date" id="birth_date" value="{{$admins->user->birth_date}}" placeholder="birth_date">
         </div>
-    
+
         <div class="form-group col-sm-4">
             <label for="Country_id">name_author</label>
             <select class="form-select form-select-sm" name="Country_id" style="width: 100%;"
@@ -90,12 +90,12 @@
         formData.append('last_name' , document.getElementById('last_name').value);
         formData.append('email' , document.getElementById('email').value);
         // formData.append('password' , document.getElementById('password').value);
-        formData.append('image' , document.getElementById('image').files[0]);
+        // formData.append('image' , document.getElementById('image').files[0]);
         formData.append('birth_date' , document.getElementById('birth_date').value);
         formData.append('Country_id' , document.getElementById('Country_id').value);
         formData.append('status' , document.getElementById('status').value);
         formData.append('gender' , document.getElementById('gender').value);
-        storeRoute('/cms/admin/update_admin/'+id,formData);
+        storeRoute('/cms/admin/update_admins/'+id,formData);
     }
 </script>
 @endsection

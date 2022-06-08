@@ -31,10 +31,10 @@
             <input type="text" class="form-control" name="email" value="{{$authors->email}}" id="email" placeholder="email">
         </div>
 
-        <div class="form-group col-md-4">
+        {{-- <div class="form-group col-md-4">
             <label for="password">password</label>
             <input type="text" class="form-control" name="password" value="{{$authors->password}} id="password" placeholder="password">
-        </div>
+        </div> --}}
 
         <div class="form-group col-md-4">
             <label for="add_files">add_files</label>
@@ -49,7 +49,7 @@
             <label for="birth_date">birth_date</label>
             <input type="date" class="form-control" name="birth_date" id="birth_date" value="{{$authoes->user->birth_date}}" placeholder="birth_date">
         </div>
-    
+
         <div class="form-group col-sm-4">
             <label for="Country_id">name_author</label>
             <select class="form-select form-select-sm" name="Country_id" style="width: 100%;"
@@ -93,7 +93,7 @@
     function performUpdate(id){
         let formData = new FormData ();
         formData.append('email' , document.getElementById('email').value);
-        formData.append('password' , document.getElementById('password').value);
+        // formData.append('password' , document.getElementById('password').value);
         formData.append('add_files' , document.getElementById('add_files').value);
         formData.append('first_name' , document.getElementById('first_name').value);
         formData.append('last_name' , document.getElementById('last_name').value);

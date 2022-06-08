@@ -38,7 +38,6 @@
                 <th>full_description</th>
                 <th>images</th>
                 <th>seen_count</th>
-                <th>address</th>
                 <th>Seeting</th>
             </tr>
             </thead>

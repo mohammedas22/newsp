@@ -31,10 +31,10 @@
             <input type="text" class="form-control" name="email" id="email" placeholder="email">
         </div>
         
-        <div class="form-group col-md-4">
+        {{-- <div class="form-group col-md-4">
             <label for="password">password</label>
             <input type="text" class="form-control" name="password" id="password" placeholder="password">
-        </div>
+        </div> --}}
 
         <div class="form-group col-md-4">
             <label for="add_files">add_files</label>
@@ -90,7 +90,7 @@
     function performStore(){
         let formData = new FormData ();
         formData.append('email' , document.getElementById('email').value);
-        formData.append('password' , document.getElementById('password').value);
+        // formData.append('password' , document.getElementById('password').value);
         formData.append('add_files' , document.getElementById('add_files').value);
         formData.append('first_name' , document.getElementById('first_name').value);
         formData.append('last_name' , document.getElementById('last_name').value);

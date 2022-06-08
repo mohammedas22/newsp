@@ -41,12 +41,12 @@ class AuthorController extends Controller
     {
         $validator = validator($request->all(), [
             'email' => 'required|string|min:3|max:40',
-            'password' => 'required|string|min:3|max:20',
+            // 'password' => 'required|string|min:3|max:20',
         ]);
         if (!$validator->fails()) {
             $authors = new Author();
             $authors->email = $request->get('email');
-            $authors->password = $request->get('password');
+            // $authors->password = $request->get('password');
             $authors->add_files = $request->get('add_files');
             $isSaved = $authors->save();
             if ($isSaved) {
@@ -82,7 +82,8 @@ class AuthorController extends Controller
      */
     public function show($id)
     {
-        //
+        $authors = Author::orderBy('id', 'desc')->Paginate(5);
+        return response()->view('cms.authors.show', compact('authors'));
     }
 
     /**
@@ -109,12 +110,12 @@ class AuthorController extends Controller
     {
         $validator = validator($request->all(), [
             'email' => 'required|string|min:3|max:20',
-            'password' => 'required|string|min:3|max:20',
+            // 'password' => 'required|string|min:3|max:20',
         ]);
         if (!$validator->fails()) {
             $authors = Author::findOrFail($id);
             $authors->email = $request->get('email');
-            $authors->password = $request->get('password');
+            // $authors->password = $request->get('password');
             $authors->add_files = $request->get('add_files');
             $isSaved = $authors->save();
             return ['redirect'=>route('authors.index')];

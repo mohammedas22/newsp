@@ -37,7 +37,7 @@
                 <th>status</th>
                 <th>image</th>
                 <th>email</th>
-                <th>password</th>
+                {{-- <th>password</th> --}}
                 <th>add_files</th>
                 <th>Seeting</th>
             </tr>
@@ -50,7 +50,7 @@
                 <td>{{$Author->user ? $Author->user->status : "Null"}}</td>
                 <td>  <img class="img-circle img-bordered-sm" src="{{asset('storage/images/author/'.$Author->image)}}" width="60" height="60" alt="Author Image"> </td>
                 <td>{{$Author->email}}</td>
-                <td>{{$Author->password}}</td>
+                {{-- <td>{{$Author->password}}</td> --}}
                 <td>{{$Author->add_files}}</td>
                 <td>
                     <div class="btn-group">
@@ -60,8 +60,9 @@
                     <a href="#" onclick="performDestroy({{$Author->id}}, this)" class="btn btn-danger" title="Delete">
                         <i class="fas fa-trash-alt"></i>
                     </a>
-
-
+                    <a href="{{route('authors.show',$Author->id)}}" class="btn btn-success" title="Show">
+                        <i class="fas fa-info"></i>
+                    </a>
                     </div>
                 </td>
                 </tr>

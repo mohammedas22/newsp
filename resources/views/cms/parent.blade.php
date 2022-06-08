@@ -277,7 +277,7 @@
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{route('authors.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                      <i class="fas fa-desktop"></i>
                     <p>Inbox</p>
                     </a>
                 </li>
@@ -301,7 +301,7 @@
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{route('viewers.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                      <i class="fas fa-desktop"></i>
                     <p>Inbox</p>
                     </a>
                 </li>
@@ -325,7 +325,7 @@
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{route('articles.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                      <i class="fas fa-desktop"></i>
                     <p>Inbox</p>
                     </a>
                 </li>
@@ -348,7 +348,7 @@
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{route('categories.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                      <i class="fas fa-desktop"></i>
                     <p>Inbox</p>
                     </a>
                 </li>

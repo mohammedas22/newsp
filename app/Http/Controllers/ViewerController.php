@@ -42,7 +42,7 @@ class ViewerController extends Controller
     {
         $validator = Validator($request->all(),[
             'email' => 'required|string|min:3|max:40',
-            'password' => 'required|string|min:3|max:30',
+            // 'password' => 'required|string|min:3|max:30',
         ]
     );
 
@@ -50,19 +50,17 @@ class ViewerController extends Controller
 
             $viewers = new Viewer();
             $viewers->email = $request->get('email');
-            $viewers->password = Hash::make($request->get('password'));
+            // $viewers->password = Hash::make($request->get('password'));
             $viewers->bio = $request->get('bio');
             $isSaved = $viewers->save();
             if($isSaved){
-            $users = new User();
-            if (request()->hasFile('image')) {
-                $image = $request->file('image');
-                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-                $image->move('storage/images/viewer', $imageName);
-                $users->image = $imageName;
-                }
-            // $roles = Role::findOrFail($request->get('role_id'));
-            // $viewers->assignRole($roles->name);
+            $users = $viewers->user;
+            // if (request()->hasFile('image')) {
+            //     $image = $request->file('image');
+            //     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+            //     $image->move('storage/images/viewer', $imageName);
+            //     $users->image = $imageName;
+            //     }
             $users->first_name = $request->get('first_name');
             $users->last_name = $request->get('last_name');
             $users->gender = $request->get('gender');
@@ -91,7 +89,8 @@ class ViewerController extends Controller
      */
     public function show($id)
     {
-        //
+        $viewers = Viewer::with('user')->orderBy('id' ,'desc')->get();
+        return response()->view('cms.viewers.show', compact('viewers'));
     }
 
     /**
@@ -102,7 +101,7 @@ class ViewerController extends Controller
      */
     public function edit($id)
     {
-        $viewers = Viewer::findOrFail($id);
+        $viewers = Viewer::with('user')->findOrFail($id);
         $countries = Country::all();
         return response()->view('cms.viewers.edit' , compact('viewers' ,'countries'));
     }
@@ -118,7 +117,7 @@ class ViewerController extends Controller
     {
         $validator = Validator($request->all(),[
             'email' => 'required|string|min:3|max:40',
-            'password' => 'required|string|min:3|max:30',
+            // 'password' => 'required|string|min:3|max:30',
         ]
     );
 
@@ -126,27 +125,23 @@ class ViewerController extends Controller
 
             $viewers =Viewer::findOrFail($id);
             $viewers->email = $request->get('email');
-            $viewers->password = Hash::make($request->get('password'));
+            // $viewers->password = Hash::make($request->get('password'));
             $viewers->bio = $request->get('bio');
             $isSaved = $viewers->save();
             if($isSaved){
             $users = $viewers->users;
-            if (request()->hasFile('image')) {
-                $image = $request->file('image');
-                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-                $image->move('storage/images/viewer', $imageName);
-                $users->image = $imageName;
-                }
-            // $roles = Role::findOrFail($request->get('role_id'));
-            // $viewers->assignRole($roles->name);
+            // if (request()->hasFile('image')) {
+            //     $image = $request->file('image');
+            //     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+            //     $image->move('storage/images/viewer', $imageName);
+            //     $users->image = $imageName;
+            //     }
             $users->first_name = $request->get('first_name');
             $users->last_name = $request->get('last_name');
             $users->gender = $request->get('gender');
             $users->status = $request->get('status');
-            // $users->image = $request->get('image');
             $users->birth_date = $request->get('birth_date');
             $users->Country_id = $request->get('Country_id');
-            // $users->setting_id = $request->get('setting_id');
             $users->actor()->associate($viewers);
             $isSaved = $users->save();
             return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);

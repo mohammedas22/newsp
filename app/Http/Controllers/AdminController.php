@@ -91,7 +91,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $admins = Admin::with('user')->orderBy('id' ,'desc')->get();
+        return response()->view('cms.admin.show' , compact('admins'));
     }
 
     /**
@@ -102,7 +103,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admins = Admin::findOrFail($id);
+        $admins = Admin::with('user')->findOrFail($id);
         $countries = Country::all();
         return response()->view('cms.admin.edit' , compact('admins','countries'));
     }
@@ -117,7 +118,7 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator($request->all(),[
-            'email' => 'required|string|min:3|max:40',
+            // 'email' => 'required|string|min:3|max:40',
             // 'password' => 'required|string|min:3|max:30',
         ]
     );
@@ -130,8 +131,12 @@ class AdminController extends Controller
             $isSaved = $admins->save();
             if($isSaved){
             $users = $admins->users;
-            // $roles = Role::findOrFail($request->get('role_id'));
-            // $admins->assignRole($roles->name);
+            // if (request()->hasFile('image')) {
+            //     $image = $request->file('image');
+            //     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+            //     $image->move('storage/images/admin', $imageName);
+            //     $users->image = $imageName;
+            //     }
             $users->first_name = $request->get('first_name');
             $users->last_name = $request->get('last_name');
             $users->gender = $request->get('gender');
@@ -140,6 +145,7 @@ class AdminController extends Controller
             $users->Country_id = $request->get('Country_id');
             $users->actor()->associate($admins);
             $isSaved = $users->save();
+            return ['redirect'=>route('admins.index')];
             return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);
 
             }

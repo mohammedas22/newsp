@@ -31,7 +31,7 @@ Route::prefix('cms/admin/')->group(function(){
     Route::resource('countries', CountryController::class);
     Route::post('update_country/{id}',[CountryController::class,'update' ])->name('update_country');
     Route::resource('admins', AdminController::class);
-    Route::post('update_admin/{id}',[AdminController::class,'update' ])->name('update_admin');
+    Route::post('update_admins/{id}',[AdminController::class,'update' ])->name('update_admins');
     Route::resource('settings', settingController::class);
     Route::post('update_settings/{id}',[settingController::class,'update' ])->name('update_settings');
     Route::resource('viewers', ViewerController::class);

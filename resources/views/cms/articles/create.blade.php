@@ -10,11 +10,10 @@
 @section('content')
 <div class="card card-primary">
     <div class="card-header">
-      <h3 class="card-title">Create Article</h3>
+        <h3 class="card-title">Create Article</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-
     <form>
         @csrf
         <div class="card-body row">
@@ -57,7 +56,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-6">
             <label>full_description</label>
             <textarea class="form-control" rows="3" placeholder="Enter full_description" name="full_description" id="full_description"></textarea>
         </div>

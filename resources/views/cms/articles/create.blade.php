@@ -26,10 +26,6 @@
             <input type="text" class="form-control" name="short_description" id="short_description" placeholder="short_description">
         </div>
         <div class="form-group col-4">
-            <label for="phone">phone</label>
-            <input type="text" class="form-control" name="phone" id="phone" placeholder="phone">
-        </div>
-        <div class="form-group col-4">
             <label for="images">images</label>
             <input type="file" class="form-control" name="images" id="images" placeholder="images">
         </div>

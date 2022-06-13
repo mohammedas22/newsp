@@ -16,7 +16,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $authors = Author::orderBy('id', 'desc')->Paginate(5);
+        $authors = Author::with('user')->orderBy('id', 'desc')->Paginate(5);
         return response()->view('cms.authors.index', compact('authors'));
     }
 
@@ -50,19 +50,19 @@ class AuthorController extends Controller
             $authors->add_files = $request->get('add_files');
             $isSaved = $authors->save();
             if ($isSaved) {
-                $users = new User();
-            $users->first_name = $request->get('first_name');
-            $users->last_name = $request->get('last_name');
-            $users->gender = $request->get('gender');
-            $users->status = $request->get('status');
-            $users->birth_date = $request->get('birth_date');
-            $users->Country_id = $request->get('Country_id');
+            $users = new User();
             if (request()->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = time() . 'image.' . $image->getClientOriginalExtension();
                 $image->move('storage/images/author', $imageName);
                 $users->image = $imageName;
                 }
+            $users->first_name = $request->get('first_name');
+            $users->last_name = $request->get('last_name');
+            $users->gender = $request->get('gender');
+            $users->status = $request->get('status');
+            $users->birth_date = $request->get('birth_date');
+            $users->Country_id = $request->get('Country_id');
             $users->actor()->associate($authors);
             $isSaved = $users->save();
                 return response()->json(['icon' => 'success', 'title' => 'The Author has been added successfully'], 200);
@@ -109,39 +109,47 @@ class AuthorController extends Controller
     public function update(Request $request, $id)
     {
         $validator = validator($request->all(), [
-            'email' => 'required|string|min:3|max:20',
+            // 'email' => 'required|string|min:3|max:40',
             // 'password' => 'required|string|min:3|max:20',
         ]);
         if (!$validator->fails()) {
             $authors = Author::findOrFail($id);
             $authors->email = $request->get('email');
+          
+            
             // $authors->password = $request->get('password');
-            $authors->add_files = $request->get('add_files');
+            // $authors->add_files = $request->get('add_files');
             $isSaved = $authors->save();
-            return ['redirect'=>route('authors.index')];
             if ($isSaved) {
-                $users = $authors->users;
+                $users = $authors->user;
                 $users->first_name = $request->get('first_name');
                 $users->last_name = $request->get('last_name');
                 $users->gender = $request->get('gender');
                 $users->status = $request->get('status');
                 $users->birth_date = $request->get('birth_date');
                 $users->Country_id = $request->get('Country_id');
+
                 if (request()->hasFile('image')) {
                     $image = $request->file('image');
                     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
                     $image->move('storage/images/author', $imageName);
-                    $users->image = $imageName;
+                    $authors->image = $imageName;
                     }
+
                 $users->actor()->associate($authors);
+
                 $isSaved = $users->save();
-                return response()->json(['icon' => 'success', 'title' => 'The Author has been added successfully'], 200);
-            } else {
-                return response()->json(['icon' => 'error', 'title' => 'Failed to add Author'], 400);
-            }
-        } else {
-            return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
-        }
+                return ['redirect'=>route('authors.index')];
+
+                // if($isSaved){
+                    return response()->json(['icon' => 'success', 'title' => 'The Author has been added successfully'], 200);
+                // }
+                    } else {
+                        return response()->json(['icon' => 'error', 'title' => 'Failed to add Author'], 400);
+                    }
+                } else {
+                    return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
+                }
     }
 
     /**

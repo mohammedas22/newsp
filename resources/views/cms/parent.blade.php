@@ -104,7 +104,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="{{asset('cmsdist/img/user3-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="{{asset('cms/dist/img/user3-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -397,8 +397,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon far fa-circle text-info"></i>
+                <a href="{{ route('cms.admin.logout') }}" class="nav-link">
+                    <i class="fas fa-sign-out-alt ml-2"></i>
                 <p>Logout</p>
                 </a>
             </li>

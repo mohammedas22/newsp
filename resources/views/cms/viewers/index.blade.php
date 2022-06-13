@@ -37,7 +37,7 @@
                 <th>status</th>
                 <th>image</th>
                 <th>email</th>
-                <th>password</th>
+                {{-- <th>password</th> --}}
                 <th>bio</th>
                 <th>Seeting</th>
             </tr>
@@ -48,9 +48,9 @@
                 <td>{{$viewer->id}}</td>
                 <td>{{$viewer->user ? $viewer->user->first_name . ' ' . $viewer->user->last_name : "Null"}}</td>
                 <td>{{$viewer->user ? $viewer->user->status : "Null"}}</td>
-                <td>  <img class="img-circle img-bordered-sm" src="{{asset('cms/storage/images/viewer/'.$viewer->image)}}" width="60" height="60" alt="User Image"> </td>
+                <td>  <img class="img-circle img-bordered-sm" src="{{asset('storage/images/viewer/'.$viewer->user->image)}}" width="60" height="60" alt="User Image"> </td>
                 <td>{{$viewer->email}}</td>
-                <td>{{$viewer->password}}</td>
+                {{-- <td>{{$viewer->password}}</td> --}}
                 <td>{{$viewer->bio}}</td>
                 <td>
                     <div class="btn-group">

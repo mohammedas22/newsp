@@ -27,10 +27,6 @@
             <input type="text" class="form-control" name="short_description" value="{{$articles->short_description}}" id="short_description" placeholder="short_description">
         </div>
         <div class="form-group col-4">
-            <label for="phone">phone</label>
-            <input type="text" class="form-control" name="phone" id="phone" value="{{$articles->phone}}" placeholder="phone">
-        </div>
-        <div class="form-group col-4">
             <label for="images">images</label>
             <input type="file" class="form-control" name="images" id="images" value="{{$articles->images}}" placeholder="images">
         </div>
@@ -77,11 +73,11 @@
         formData.append('title' , document.getElementById('title').value);
         formData.append('short_description' , document.getElementById('short_description').value);
         formData.append('full_description' , document.getElementById('full_description').value);
-        // formData.append('images' , document.getElementById('images').files[0];
+        // // formData.append('images' , document.getElementById('images').files[0];
         formData.append('seen_count' , document.getElementById('seen_count').value);
         formData.append('category_id' , document.getElementById('category_id').value);
         formData.append('author_id' , document.getElementById('author_id').value);
-        storeRoute('/cms/admin/update_aeticles/'+id,formData);
+        storeRoute('/cms/admin/update_articles/'+id,formData);
     }
 </script>
 @endsection

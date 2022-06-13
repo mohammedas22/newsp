@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Contact_requestsController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\settingController;
+use App\Http\Controllers\User_authController;
 use App\Http\Controllers\ViewerController;
 use App\Models\Contact_requests;
 use Illuminate\Support\Facades\Route;
@@ -25,8 +26,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('cms/')->middleware('guest:admin')->group(function(){
+    Route::get('{guard}/login',[User_authController::class ,'showLogin'])->name('view.login');
+    Route::get('{guard}/login',[User_authController::class ,'Login']);
+});
+
+Route::prefix('cms/admin')->middleware('auth:admin')->group(function(){
+    Route::get('logout' , [UserAuthController::class , 'Logout'])->name('cms.admin.logout');
+});
+// ->middleware('auth:admin')
 Route::prefix('cms/admin/')->group(function(){
-    Route::view('parent','cms.parent');
+    Route::view('','cms.parent');
     Route::view('temp','cms.temp');
     Route::resource('countries', CountryController::class);
     Route::post('update_country/{id}',[CountryController::class,'update' ])->name('update_country');
@@ -44,5 +55,5 @@ Route::prefix('cms/admin/')->group(function(){
     Route::post('update_contact_requests/{id}',[Contact_requestsController::class,'update' ])->name('update_contact_requests');
     Route::resource('articles', ArticleController::class);
     Route::post('update_articles/{id}',[ArticleController::class,'update' ])->name('update_articles');
-    
+
 });

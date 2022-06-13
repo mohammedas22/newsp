@@ -20,28 +20,28 @@
         <div class="card-body row">
             <div class="form-group col-md-4">
                 <label for="first_name">first_name</label>
-                <input type="text" class="form-control" name="first_name" value="{{$admins->user->first_name}}" id="first_name" placeholder="first_name">
+                <input type="text" class="form-control" name="first_name" value="{{$viewers->user->first_name}}" id="first_name" placeholder="first_name">
             </div>
             <div class="form-group col-md-4">
                 <label for="last_name">last_name</label>
-                <input type="text" class="form-control" name="last_name" value="{{$admins->user->last_name}}" id="last_name" placeholder="last_name">
+                <input type="text" class="form-control" name="last_name" value="{{$viewers->user->last_name}}" id="last_name" placeholder="last_name">
             </div>
             <div class="form-group">
                 <label for="email">email</label>
-                <input type="text" class="form-control" name="email" id="email" placeholder="email">
+                <input type="text" class="form-control" name="email" value="{{$viewers->user->email}}"  id="email" placeholder="email">
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="password">password</label>
                 <input type="text" class="form-control" name="password" id="password" placeholder="password">
-            </div>
+            </div> --}}
             <div class="form-group col-md-4">
                 <label for="image">image</label>
-                <input type="file" class="form-control" name="image" value="{{$admins->user->image}}" id="image" placeholder="image">
+                <input type="file" class="form-control" name="image" value="{{$viewers->user->image}}" id="image" placeholder="image">
             </div>
     
             <div class="form-group col-md-4">
                 <label for="birth_date">birth_date</label>
-                <input type="date" class="form-control" name="birth_date" id="birth_date" value="{{$admins->user->birth_date}}" placeholder="birth_date">
+                <input type="date" class="form-control" name="birth_date" id="birth_date" value="{{$viewers->user->birth_date}}" placeholder="birth_date">
             </div>
             <div class="form-group col-sm-4">
                 <label for="Country_id">name_author</label>
@@ -56,7 +56,7 @@
                 <label for="gender">gender </label>
                 <select class="form-select form-select-sm" name="gender" style="width: 100%;"
                     id="gender" aria-label=".form-select-sm example">
-                    <option selected> {{ $admins->user->gender }} </option>
+                    <option selected> {{ $viewers->user->gender }} </option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
@@ -66,18 +66,26 @@
                 <label for="status">status</label>
                 <select class="form-select form-select-sm" name="status" style="width: 100%;"
                     id="status" aria-label=".form-select-sm example">
-                    <option selected> {{ $admins->user->status }} </option>
+                    <option selected> {{ $viewers->user->status }} </option>
                     <option value="Active">Active</option>
                     <option value="InActive">InActive</option>
                     <option value="Blocked">Blocked</option>
                 </select>
             </div>
+            <div class="col-sm-6">
+                <!-- textarea -->
+                <div class="form-group col-md-6">
+                    <label>Textarea</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter bio" value="{{$viewers->user->bio}}" name="bio" id="bio"></textarea>
+                </div>
+            </div>
+        </div>
         <div class="card-footer">
             <button type="button" onclick="performStore({{$viewers->id}})" class="btn btn-primary">Update</button>
             <a href="{{route('viewers.index')}}" class="btn btn-success">return to index</a>
         </div>
     </form>
-</div>
+
 @endsection
 
 @section('script')
@@ -85,7 +93,7 @@
     function performUpdate(id){
         let formData = new FormData ();
         formData.append('email' , document.getElementById('email').value);
-        formData.append('password' , document.getElementById('password').value);
+        // formData.append('password' , document.getElementById('password').value);
         formData.append('bio' , document.getElementById('bio').value);
         formData.append('first_name' , document.getElementById('first_name').value);
         formData.append('last_name' , document.getElementById('last_name').value);

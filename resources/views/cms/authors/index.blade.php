@@ -48,7 +48,7 @@
                 <td>{{$Author->id}}</td>
                 <td>{{$Author->user ? $Author->user->first_name . ' ' . $Author->user->last_name : "Null"}}</td>
                 <td>{{$Author->user ? $Author->user->status : "Null"}}</td>
-                <td>  <img class="img-circle img-bordered-sm" src="{{asset('storage/images/author/'.$Author->image)}}" width="60" height="60" alt="Author Image"> </td>
+                <td>  <img class="img-circle img-bordered-sm" src="{{asset('storage/images/author/'. $Author->user->image )}}" width="60" height="60" alt="Author Image"> </td>
                 <td>{{$Author->email}}</td>
                 {{-- <td>{{$Author->password}}</td> --}}
                 <td>{{$Author->add_files}}</td>

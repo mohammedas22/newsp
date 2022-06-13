@@ -52,7 +52,7 @@
                 <td>{{$author->user ? $author->user->email : "Null"}}</td>
                 <td>{{$author->user ? $author->user->status : "Null"}}</td>
                 <td>{{$author->user ? $author->user->gender : "Null"}}</td>
-                <td>  <img class="img-circle img-bordered-sm" src="{{asset('/images/author/'.$author->image)}}" width="60" height="60" alt="User Image"> </td>
+                <td>  <img class="img-circle img-bordered-sm" src="{{asset('storage/images/author/'.$author->user->image)}}" width="60" height="60" alt="User Image"> </td>
                 <td>{{$author->user ? $author->user->birth_date : "Null"}}</td>
                 <td>{{$author->bio}}</td>
                 </td>

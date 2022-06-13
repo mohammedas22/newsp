@@ -61,8 +61,6 @@ class AdminController extends Controller
                 $image->move('storage/images/admin', $imageName);
                 $users->image = $imageName;
                 }
-            // $roles = Role::findOrFail($request->get('role_id'));
-            // $admins->assignRole($roles->name);
             $users->first_name = $request->get('first_name');
             $users->last_name = $request->get('last_name');
             $users->gender = $request->get('gender');
@@ -130,13 +128,13 @@ class AdminController extends Controller
             // $admins->password = Hash::make($request->get('password'));
             $isSaved = $admins->save();
             if($isSaved){
-            $users = $admins->users;
-            // if (request()->hasFile('image')) {
-            //     $image = $request->file('image');
-            //     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-            //     $image->move('storage/images/admin', $imageName);
-            //     $users->image = $imageName;
-            //     }
+            $users = $admins->user;
+            if (request()->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                $image->move('storage/images/admin', $imageName);
+                $users->image = $imageName;
+                }
             $users->first_name = $request->get('first_name');
             $users->last_name = $request->get('last_name');
             $users->gender = $request->get('gender');

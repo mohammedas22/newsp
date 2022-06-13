@@ -42,23 +42,23 @@ class ArticleController extends Controller
     {
         $validator = validator($request->all(), [
             'title' => 'required|string|min:3|max:40',
-            // 'short_description' => 'required|string',
+            // // 'short_description' => 'required|string',
             'seen_count' => 'required|integer',
         ]);
         if (!$validator->fails()) {
             $articles = new Article();
+            // if (request()->hasFile('images')) {
+            //     $images = $request->file('images');
+            //     $imagesName = time() . 'images.' . $images->getClientOriginalExtension();
+            //     $images->move('storage/images/article', $imagesName);
+            //     $articles->images = $imagesName;
+            //     }
             $articles->title = $request->get('title');
             $articles->short_description = $request->get('short_description');
             $articles->full_description = $request->get('full_description');
             $articles->seen_count = $request->get('seen_count');
             $articles->category_id = $request->get('category_id');
             $articles->author_id = $request->get('author_id');
-            // if (request()->hasFile('images')) {
-            //     $images = $request->file('images');
-            //     $imagesName = time() . 'images.' . $images->getClientOriginalExtension();
-            //     $images->move('storage/imagess/article', $imagesName);
-            //     $articles->images = $imagesName;
-            //     }
             $isSaved = $articles->save();
             if ($isSaved) {
                 return response()->json(['icon' => 'success', 'title' => 'The Article has been added successfully'], 200);
@@ -110,19 +110,20 @@ class ArticleController extends Controller
         ]);
         if (!$validator->fails()) {
             $articles = Article::findOrFail($id);
+            // if (request()->hasFile('images')) {
+            //     $images = $request->file('images');
+            //     $imagesName = time() . 'images.' . $images->getClientOriginalExtension();
+            //     $images->move('storage/images/articles', $imagesName);
+            //     $articles->images = $imagesName;
+            //     }
             $articles->title = $request->get('title');
             $articles->short_description = $request->get('short_description');
             $articles->full_description = $request->get('full_description');
             $articles->seen_count = $request->get('seen_count');
             $articles->category_id = $request->get('category_id');
             $articles->author_id = $request->get('author_id');
-            // if (request()->hasFile('images')) {
-            //     $images = $request->file('images');
-            //     $imagesName = time() . 'images.' . $images->getClientOriginalExtension();
-            //     $images->move('storage/imagess/article', $imagesName);
-            //     $articles->images = $imagesName;
-            //     }
             $isSaved = $articles->save();
+            return ['redirect'=>route('articles.index')];
             if ($isSaved) {
                 return response()->json(['icon' => 'success', 'title' => 'The Article has been added successfully'], 200);
             } else {

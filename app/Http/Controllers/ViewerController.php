@@ -41,7 +41,7 @@ class ViewerController extends Controller
     public function store(Request $request)
     {
         $validator = Validator($request->all(),[
-            'email' => 'required|string|min:3|max:40',
+            // 'email' => 'required|string|min:3|max:40',
             // 'password' => 'required|string|min:3|max:30',
         ]
     );
@@ -53,14 +53,15 @@ class ViewerController extends Controller
             // $viewers->password = Hash::make($request->get('password'));
             $viewers->bio = $request->get('bio');
             $isSaved = $viewers->save();
+
             if($isSaved){
-            $users = $viewers->user;
-            // if (request()->hasFile('image')) {
-            //     $image = $request->file('image');
-            //     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-            //     $image->move('storage/images/viewer', $imageName);
-            //     $users->image = $imageName;
-            //     }
+            $users = new User();
+            if (request()->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                $image->move('storage/images/viewer', $imageName);
+                $users->image = $imageName;
+                }
             $users->first_name = $request->get('first_name');
             $users->last_name = $request->get('last_name');
             $users->gender = $request->get('gender');
@@ -69,7 +70,10 @@ class ViewerController extends Controller
             $users->Country_id = $request->get('Country_id');
             $users->actor()->associate($viewers);
             $isSaved = $users->save();
-            return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);
+
+            if($isSaved){
+                return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);
+            }
 
             }
             else{
@@ -129,13 +133,13 @@ class ViewerController extends Controller
             $viewers->bio = $request->get('bio');
             $isSaved = $viewers->save();
             if($isSaved){
-            $users = $viewers->users;
-            // if (request()->hasFile('image')) {
-            //     $image = $request->file('image');
-            //     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-            //     $image->move('storage/images/viewer', $imageName);
-            //     $users->image = $imageName;
-            //     }
+            $users = $viewers->user;
+            if (request()->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                $image->move('storage/images/viewer', $imageName);
+                $users->image = $imageName;
+                }
             $users->first_name = $request->get('first_name');
             $users->last_name = $request->get('last_name');
             $users->gender = $request->get('gender');
@@ -144,6 +148,7 @@ class ViewerController extends Controller
             $users->Country_id = $request->get('Country_id');
             $users->actor()->associate($viewers);
             $isSaved = $users->save();
+            return ['redirect'=>route('viewers.index')];
             return response()->json(['icon' => 'success' , 'title' => 'The admin has been added successfully'] , 200);
 
             }

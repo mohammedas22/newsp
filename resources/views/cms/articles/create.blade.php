@@ -73,7 +73,7 @@
         formData.append('title' , document.getElementById('title').value);
         formData.append('short_description' , document.getElementById('short_description').value);
         formData.append('full_description' , document.getElementById('full_description').value);
-        // formData.append('images' , document.getElementById('images').files[0];
+        formData.append('images' , document.getElementById('images').files[0]);
         formData.append('seen_count' , document.getElementById('seen_count').value);
         formData.append('category_id' , document.getElementById('category_id').value);
         formData.append('author_id' , document.getElementById('author_id').value);

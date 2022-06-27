@@ -43,16 +43,16 @@ class ArticleController extends Controller
         $validator = validator($request->all(), [
             'title' => 'required|string|min:3|max:40',
             // // 'short_description' => 'required|string',
-            'seen_count' => 'required|integer',
+            // 'seen_count' => 'required|integer',
         ]);
         if (!$validator->fails()) {
             $articles = new Article();
-            // if (request()->hasFile('images')) {
-            //     $images = $request->file('images');
-            //     $imagesName = time() . 'images.' . $images->getClientOriginalExtension();
-            //     $images->move('storage/images/article', $imagesName);
-            //     $articles->images = $imagesName;
-            //     }
+            if (request()->hasFile('images')) {
+                $images = $request->file('images');
+                $imagesName = time() . 'images.' . $images->getClientOriginalExtension();
+                $images->move('storage/images/article', $imagesName);
+                $articles->images = $imagesName;
+                }
             $articles->title = $request->get('title');
             $articles->short_description = $request->get('short_description');
             $articles->full_description = $request->get('full_description');

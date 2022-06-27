@@ -65,3 +65,13 @@ Route::prefix('cms/admin/')->middleware('auth:admin')->group(function(){
     Route::resource('role.permissions', RolePermissionController::class);
 
 });
+
+Route::prefix('news/')->group(['nawspage' => 'Website'] ,function(){
+    Route::view('show/{id}' ,[HomeController::class ,'showDet'])->name('website.det');
+    Route::view('frond1', 'frond.master');
+    Route::view('index', 'frond.index')->name('news.index');
+    Route::view('contact', 'frond.contact')->name('news.contact');
+    Route::view('all', 'frond.all-news')->name('news.all-news');
+    Route::view('det', 'frond.newsdetailes')->name('news.det');
+
+});

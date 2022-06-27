@@ -40,23 +40,23 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         $validator = validator($request->all(), [
-            'email' => 'required|string|min:3|max:40',
+            // 'email' => 'required|string|min:3|max:40',
             // 'password' => 'required|string|min:3|max:20',
         ]);
         if (!$validator->fails()) {
             $authors = new Author();
             $authors->email = $request->get('email');
             // $authors->password = $request->get('password');
-            $authors->add_files = $request->get('add_files');
-            $isSaved = $authors->save();
-            if ($isSaved) {
-            $users = new User();
+            // $authors->add_files = $request->get('add_files');
             if (request()->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = time() . 'image.' . $image->getClientOriginalExtension();
                 $image->move('storage/images/author', $imageName);
-                $users->image = $imageName;
+                $authors->image = $imageName;
                 }
+            $isSaved = $authors->save();
+            if ($isSaved) {
+            $users = new User();
             $users->first_name = $request->get('first_name');
             $users->last_name = $request->get('last_name');
             $users->gender = $request->get('gender');
@@ -115,8 +115,8 @@ class AuthorController extends Controller
         if (!$validator->fails()) {
             $authors = Author::findOrFail($id);
             $authors->email = $request->get('email');
-          
-            
+
+
             // $authors->password = $request->get('password');
             // $authors->add_files = $request->get('add_files');
             $isSaved = $authors->save();

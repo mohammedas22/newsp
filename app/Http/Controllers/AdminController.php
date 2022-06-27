@@ -52,15 +52,15 @@ class AdminController extends Controller
             $admins = new Admin();
             $admins->email = $request->get('email');
             $admins->password = Hash::make($request->get('password'));
-            $isSaved = $admins->save();
-            if($isSaved){
-            $users = new User();
             if (request()->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = time() . 'image.' . $image->getClientOriginalExtension();
                 $image->move('storage/images/admin', $imageName);
-                $users->image = $imageName;
+                $admins->image = $imageName;
                 }
+            $isSaved = $admins->save();
+            if($isSaved){
+            $users = new User();
             $users->first_name = $request->get('first_name');
             $users->last_name = $request->get('last_name');
             $users->gender = $request->get('gender');

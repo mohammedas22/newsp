@@ -47,7 +47,7 @@
                 <td>{{$admin->id}}</td>
                 <td>{{$admin->user ? $admin->user->first_name . ' ' . $admin->user->last_name : "Null"}}</td>
                 <td>{{$admin->user ? $admin->user->status : "Null"}}</td>
-                <td>  <img class="img-circle img-bordered-sm" src="{{asset('storage/images/admin/'.$admin->user->image )}}" width="60" height="60" alt="User Image"> </td>
+                <td>  <img class="img-circle img-bordered-sm" src="{{asset('storage/images/admin/'.$admin->image )}}" width="60" height="60" alt="User Image"> </td>
                 <td>{{$admin->email}}</td>
                 {{-- <td>{{$admin->password}}</td> --}}
                 <td>

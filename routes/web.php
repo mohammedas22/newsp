@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Contact_requestsController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\settingController;
 use App\Http\Controllers\User_authController;
 use App\Http\Controllers\ViewerController;
@@ -29,14 +31,14 @@ Route::get('/', function () {
 
 Route::prefix('cms/')->middleware('guest:admin')->group(function(){
     Route::get('{guard}/login',[User_authController::class ,'showLogin'])->name('view.login');
-    // Route::get('{guard}/login',[User_authController::class ,'Login']);
+    Route::post('{guard}/login',[User_authController::class ,'Login']);
 });
 
 Route::prefix('cms/admin')->middleware('auth:admin')->group(function(){
-    Route::get('logout' , [UserAuthController::class , 'Logout'])->name('cms.admin.logout');
+    Route::get('logout' , [User_authController::class , 'Logout'])->name('cms.admin.logout');
 });
 // ->middleware('auth:admin')
-Route::prefix('cms/admin/')->group(function(){
+Route::prefix('cms/admin/')->middleware('auth:admin')->group(function(){
     Route::view('','cms.parent');
     Route::view('temp','cms.temp');
     Route::resource('countries', CountryController::class);
@@ -55,5 +57,11 @@ Route::prefix('cms/admin/')->group(function(){
     Route::post('update_contact_requests/{id}',[Contact_requestsController::class,'update' ])->name('update_contact_requests');
     Route::resource('articles', ArticleController::class);
     Route::post('update_articles/{id}',[ArticleController::class,'update' ])->name('update_articles');
+
+    Route::resource('roles', RoleController::class);
+    Route::post('update_roles/{id}' , [RoleController::class , 'update'])->name('update_roles');
+    Route::resource('permissions', PermissionController::class);
+    Route::post('update_permissions/{id}' , [PermissionController::class , 'update'])->name('update_permissions');
+    Route::resource('role.permissions', RolePermissionController::class);
 
 });

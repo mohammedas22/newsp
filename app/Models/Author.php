@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Author extends Model
 {
-    use HasFactory;
+    use HasFactory , HasRoles ;
     public function user(){
         return $this->morphOne(User::class ,'actor' , 'actor_type' , 'actor_id' ,'id');
     }

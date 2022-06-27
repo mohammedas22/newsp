@@ -218,6 +218,53 @@
 
 
             <li class="nav-header">EXAMPLES</li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user"></i>
+                <p>
+                    Roles
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('roles.index')}}" class="nav-link">
+                        <i class="fas fa-desktop"></i>
+                    <p>Inbox</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('roles.create')}}" class="nav-link">
+                        <i class="fas fa-plus"></i>
+                    <p>cerate</p>
+                    </a>
+                </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user"></i>
+                <p>
+                    permissions
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('permissions.index')}}" class="nav-link">
+                        <i class="fas fa-desktop"></i>
+                    <p>Inbox</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('permissions.create')}}" class="nav-link">
+                        <i class="fas fa-plus"></i>
+                    <p>cerate</p>
+                    </a>
+                </li>
+                </ul>
+            </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                 {{-- <i class="nav-icon far fa-envelope"></i> --}}

@@ -50,7 +50,7 @@
             <input type="date" class="form-control" name="birth_date" id="birth_date" placeholder="birth_date">
         </div>
         <div class="form-group col-sm-4">
-            <label for="Country_id">name_author</label>
+            <label for="Country_id">name_country</label>
             <select class="form-select form-select-sm" name="Country_id" style="width: 100%;"
                 id="Country_id" aria-label=".form-select-sm example">
                 @foreach ($countries as $country)

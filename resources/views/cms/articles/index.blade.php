@@ -48,7 +48,7 @@
                 <td>{{$article->title}}</td>
                 <td>{{$article->short_description}}</td>
                 <td>{{$article->full_description}}</td>
-                <td>  <img class="img-circle img-bordered-sm" src="{{asset('storage/images/articles/'.$article->image)}}" width="60" height="60" alt="article Image"> </td>
+                <td>  <img class="img-circle img-bordered-sm" src="{{asset('storage/images/article/'.$article->image)}}" width="60" height="60" alt="article Image"> </td>
                 <td>{{$article->seen_count}}</td>
                 <td>
                     <div class="btn-group">
@@ -58,7 +58,7 @@
                     <a href="#" onclick="performDestroy({{$article->id}}, this)" class="btn btn-danger" title="Delete">
                         <i class="fas fa-trash-alt"></i>
                     </a>
-                    
+
 
                     </div>
                 </td>

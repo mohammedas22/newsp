@@ -31,7 +31,7 @@
         </div>
         <div class="form-group col-4">
             <label for="seen_count">seen_count</label>
-            <input type="text" class="form-control" name="seen_count" id="seen_count" placeholder="seen_count">
+            <input type="number" class="form-control" name="seen_count" id="seen_count" placeholder="seen_count">
         </div>
         <div class="form-group col-sm-4">
             <label for="category_id">name_category</label>

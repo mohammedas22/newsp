@@ -25,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return response()->view('cms.spaite.roles.create', compact('roles'));
+        return response()->view('cms.spaite.roles.create');
     }
 
     /**
@@ -38,7 +38,7 @@ class RoleController extends Controller
     {
         $validator = Validator($request->all(),
         [
-            'guard_name' => 'required|string|in:admin,author',
+            'guard_name' => 'required|string|in:admin,web',
             'name' => 'required|string'
         ]);
 

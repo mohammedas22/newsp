@@ -25,7 +25,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return response()->view('cms.spaite.permissions.create', compact('roles'));
+        return response()->view('cms.spaite.permissions.create');
     }
 
     /**
@@ -38,7 +38,7 @@ class PermissionController extends Controller
     {
         $validator = Validator($request->all(),
         [
-            'guard_name' => 'required|string|in:admin',
+            'guard_name' => 'required|string|in:admin,web',
             'name' => 'required|string'
         ]);
 

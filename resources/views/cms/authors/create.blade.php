@@ -30,15 +30,15 @@
             <label for="email">email</label>
             <input type="text" class="form-control" name="email" id="email" placeholder="email">
         </div>
-        
-        {{-- <div class="form-group col-md-4">
+
+        <div class="form-group col-md-4">
             <label for="password">password</label>
             <input type="text" class="form-control" name="password" id="password" placeholder="password">
-        </div> --}}
+        </div>
 
         <div class="form-group col-md-4">
             <label for="add_files">add_files</label>
-            <input type="text" class="form-control" name="add_files" id="add_files" placeholder="add_files">
+            <input type="file" class="form-control" name="add_files" id="add_files" placeholder="add_files">
         </div>
         <div class="form-group col-md-4">
             <label for="image">image</label>
@@ -66,7 +66,7 @@
                 <option value="Female">Female</option>
             </select>
         </div>
-        
+
         <div class="form-group col-md-4">
             <label for="status">status</label>
             <select class="form-select form-select-sm" name="status" style="width: 100%;"
@@ -91,7 +91,7 @@
         let formData = new FormData ();
         formData.append('email' , document.getElementById('email').value);
         formData.append('password' , document.getElementById('password').value);
-        formData.append('add_files' , document.getElementById('add_files').value);
+        formData.append('add_files' , document.getElementById('add_files').files[0]);
         formData.append('first_name' , document.getElementById('first_name').value);
         formData.append('last_name' , document.getElementById('last_name').value);
         formData.append('image' , document.getElementById('image').files[0]);

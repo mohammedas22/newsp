@@ -8,9 +8,11 @@ use App\Http\Controllers\Contact_requestsController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\settingController;
 use App\Http\Controllers\User_authController;
 use App\Http\Controllers\ViewerController;
+use App\Http\Controllers\Website\HomeController;
 use App\Models\Contact_requests;
 use Illuminate\Support\Facades\Route;
 
@@ -66,7 +68,7 @@ Route::prefix('cms/admin/')->middleware('auth:admin')->group(function(){
 
 });
 
-Route::prefix('news/')->group(['nawspage' => 'Website'] ,function(){
+Route::prefix('news/')->group(function(){
     Route::view('show/{id}' ,[HomeController::class ,'showDet'])->name('website.det');
     Route::view('frond1', 'frond.master');
     Route::view('index', 'frond.index')->name('news.index');
@@ -75,3 +77,4 @@ Route::prefix('news/')->group(['nawspage' => 'Website'] ,function(){
     Route::view('det', 'frond.newsdetailes')->name('news.det');
 
 });
+// ['nawspage'=>'Website']

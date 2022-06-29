@@ -52,7 +52,7 @@
 
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="button" onclick="performStore()" class="btn btn-lg btn-success">حفظ</button>
+                            <button type="button" onclick="performStore()" class="btn btn-primary">Stroe</button>
                             <a href="{{route('permissions.index')}}"><button type="button" class="btn btn-lg btn-primary">
                                     قائمة الصلاحيات </button></a>
                         </div>
@@ -73,7 +73,7 @@
 @endsection
 <script src="{{ asset('cms/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 
-@section('scripts')
+@section('script')
 
 
 <script>

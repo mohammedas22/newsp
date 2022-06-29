@@ -46,8 +46,14 @@ class AuthorController extends Controller
         if (!$validator->fails()) {
             $authors = new Author();
             $authors->email = $request->get('email');
-            // $authors->password = $request->get('password');
+            $authors->password = $request->get('password');
             // $authors->add_files = $request->get('add_files');
+            if (request()->hasFile('add_files')) {
+                $file = $request->file('add_files');
+                $fileName = time() . 'add_files.' . $file->getClientOriginalExtension();
+                $file->move('storage/add_files/author', $fileName);
+                $authors->file = $fileName;
+                }
             if (request()->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = time() . 'image.' . $image->getClientOriginalExtension();

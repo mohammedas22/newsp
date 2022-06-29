@@ -82,7 +82,7 @@
             </section>
             @endsection
 
-            @section('scripts')
+            @section('script')
 
             <script>
               function storeRolePermission(roleId, permissionId){

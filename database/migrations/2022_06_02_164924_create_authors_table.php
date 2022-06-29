@@ -17,7 +17,7 @@ class CreateAuthorsTable extends Migration
             $table->id();
             $table->string('email');
             $table->string('password');
-            $table->string('add_files');
+            $table->string('add_files')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

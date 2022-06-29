@@ -73,7 +73,7 @@
 @endsection
 <script src="{{ asset('cms/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 
-@section('scripts')
+@section('script')
 
 
 <script>

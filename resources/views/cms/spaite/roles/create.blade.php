@@ -17,7 +17,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">عرض بيانات الأدوار</h3>
+                        <h3 class="card-title"> View roles data </h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -33,16 +33,16 @@
                                     <label for="guard_name">Guard Name  </label>
                                     <select class="form-select form-select-sm" name="guard_name" style="width: 100%;"
                                         id="guard_name" aria-label=".form-select-sm example">
-                                        <option value="admin">الأدمن</option>
-                                        <option value="web">المستخدم</option>
+                                        <option value="admin">admin</option>
+                                        <option value="web">user</option>
 
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="name">الاسم الوظيفي </label>
+                                    <label for="name"> Job name </label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="أدخل الاسم الوظيفي">
+                                        placeholder="Enter Job name">
                                 </div>
 
 
@@ -52,9 +52,9 @@
 
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="button" onclick="performStore()" class="btn btn-lg btn-success">حفظ</button>
+                            <button type="button" onclick="performStore()" class="btn btn-lg btn-success">stor</button>
                             <a href="{{route('roles.index')}}"><button type="button" class="btn btn-lg btn-primary">
-                                    قائمة الأدوار </button></a>
+                                roles List  </button></a>
                         </div>
                     </form>
                 </div>

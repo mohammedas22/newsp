@@ -1,5 +1,5 @@
 @extends('cms.parent')
-@section('title','الصلاحيات ')
+@section('title','permissions ')
 
 
 @section('styles')

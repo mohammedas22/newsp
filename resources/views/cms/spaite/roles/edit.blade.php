@@ -17,7 +17,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">تعديل بيانات الأدوار</h3>
+                        <h3 class="card-title">  Update roles data</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -30,19 +30,19 @@
 
 
                                 <div class="form-group col-md-4">
-                                    <label for="guard_name">نوع الدبلومة</label>
+                                    <label for="guard_name">Job type </label>
                                     <select class="form-select form-select-sm" name="guard_name" style="width: 100%;"
                                         id="guard_name" aria-label=".form-select-sm example">
-                                        <option value="admin" @if($roles->guard_name == 'admin') selected @endif>الأدمن</option>
-                                        <option value="web" @if($roles->guard_name == 'web') selected @endif>المستخدم</option>
+                                        <option value="admin" @if($roles->guard_name == 'admin') selected @endif>admin</option>
+                                        <option value="web" @if($roles->guard_name == 'web') selected @endif>user</option>
 
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="name">الدور </label>
+                                    <label for="name">roles </label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                       value="{{ $roles->name }}" placeholder="أدخل الدور">
+                                       value="{{ $roles->name }}" placeholder="Enter roles ">
                                 </div>
 
 
@@ -54,7 +54,7 @@
                         <div class="card-footer">
                             <button type="button" onclick="performUpdate({{ $roles->id }})" class="btn btn-lg btn-success">تعديل</button>
                             <a href="{{route('roles.index')}}"><button type="button" class="btn btn-lg btn-primary">
-                                     إلغاء </button></a>
+                                Cancellation </button></a>
                         </div>
                     </form>
                 </div>

@@ -18,7 +18,7 @@
           <div class="card-header">
             <h3 class="card-title"> index roles  </h3>
             <div class="card-tools">
-                <a href="{{route('roles.create')}}"><button type="button" class="btn btn-lg btn-primary">انشاء دور جديد </button></a>
+                <a href="{{route('roles.create')}}"><button type="button" class="btn btn-lg btn-primary"> Create a new role </button></a>
               </div>
               <br>
             </div>
@@ -42,14 +42,14 @@
                   <td>{{$role->name}}</td>
                   <td>
                     <a href="{{ route('role.permissions.index' , $role->id)}}"
-                      class="btn btn-primary"> الصلاحيات ({{ $role->permissions_count }})
+                      class="btn btn-primary"> permissions ({{ $role->permissions_count }})
                     </a>
                   </td>
                   <td><span class="badge bg-primary" >{{$role->guard_name}}</span></td>
                   <td>
                     <div class="btn-group">
                       <a href="{{route('roles.edit',$role->id)}}" class="btn btn-info" title="Edit">
-                        تعديل
+                        Update
                         </a>
 
                       <a href="#" onclick="performDestroy({{$role->id}}, this)" class="btn btn-danger" title="Delete">

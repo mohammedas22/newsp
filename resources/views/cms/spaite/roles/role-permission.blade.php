@@ -1,10 +1,10 @@
 @extends('cms.parent')
 
-@section('title' , 'الأدوار')
+@section('title' , 'roles')
 
-@section('main-title' , 'الأدوار')
+@section('main-title' , 'roles')
 
-@section('small-title' , 'الأدوار')
+@section('small-title' , 'roles')
 
 @section('styles')
 
@@ -47,9 +47,9 @@
                           <thead>
                             <tr>
                               <th>ID</th>
-                              <th>اسم الصلاحية</th>
-                              <th>الاسم الوظيفي</th>
-                              <th>الحالة</th>
+                              <th> permission name </th>
+                              <th> Job name </th>
+                              <th>status</th>
                             </tr>
                           </thead>
                           <tbody>

@@ -313,6 +313,29 @@
                 </ul>
             </li>
 
+            {{-- <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user"></i>
+                <p>
+                    slider
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('sliders.index')}}" class="nav-link">
+                        <i class="fas fa-desktop"></i>
+                    <p>Inbox</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('sliders.create')}}" class="nav-link">
+                        <i class="fas fa-plus"></i>
+                    <p>cerate</p>
+                    </a>
+                </li>
+                </ul>
+            </li> --}}
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fas fa-at"></i>
@@ -384,29 +407,7 @@
                 </li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon far fa-envelope"></i>
-                <p>
-                    Category
-                    <i class="fas fa-angle-left right"></i>
-                </p>
-                </a>
-                <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{route('categories.index')}}" class="nav-link">
-                      <i class="fas fa-desktop"></i>
-                    <p>Inbox</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('categories.create')}}" class="nav-link">
-                        <i class="fas fa-plus"></i>
-                    <p>cerate</p>
-                    </a>
-                </li>
-                </ul>
-            </li>
+
             <li class="nav-item">
                 <a href="#" class="nav-link">
                 <i class="nav-icon far fa-envelope"></i>
@@ -430,6 +431,93 @@
                 </li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                    Category
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('categories.index')}}" class="nav-link">
+                      <i class="fas fa-desktop"></i>
+                    <p>Inbox</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('categories.create')}}" class="nav-link">
+                        <i class="fas fa-plus"></i>
+                    <p>cerate</p>
+                    </a>
+                </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                    sliders
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('sliders.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Inbox</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('sliders.create')}}" class="nav-link">
+                        <i class="fas fa-plus"></i>
+                    <p>cerate</p>
+                    </a>
+                </li>
+                </ul>
+            </li>
+            {{-- <li class="nav-item">
+                <a href="#" class="nav-link">
+                {{-- <i class="nav-icon far fa-envelope"></i> --}}
+                <p>
+                <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>
+                    Contacts
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('contacts.index')}}" class="nav-link">
+                    <i class="fas fa-desktop"></i>
+                    <p>Inbox</p>
+                    </a>
+                </li>
+                </ul>
+                </li>
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('categories.index')}}" class="nav-link">
+                      <i class="fas fa-desktop"></i>
+                    <p>Inbox</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('categories.create')}}" class="nav-link">
+                        <i class="fas fa-plus"></i>
+                    <p>cerate</p>
+                    </a>
+                </li>
+                </ul>
+            </li> --}}
+        
             <li class="nav-header">Setting</li>
             <li class="nav-item">
                 <a href="#" class="nav-link">

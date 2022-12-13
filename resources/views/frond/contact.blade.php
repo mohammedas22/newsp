@@ -29,20 +29,20 @@
             <div class="control-group form-group">
               <div class="controls">
                 <label>Full Name:</label>
-                <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+                <input type="text" class="form-control" id="name" name="name" required data-validation-required-message="Please enter your name.">
                 <p class="help-block"></p>
               </div>
             </div>
             <div class="control-group form-group">
               <div class="controls">
                 <label>Phone Number:</label>
-                <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
+                <input type="tel" class="form-control" id="phone" name="phone" required data-validation-required-message="Please enter your phone number.">
               </div>
             </div>
             <div class="control-group form-group">
               <div class="controls">
                 <label>Email Address:</label>
-                <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
+                <input type="email" class="form-control" id="email" name="email" required data-validation-required-message="Please enter your email address.">
               </div>
             </div>
             <div class="control-group form-group">
@@ -53,7 +53,8 @@
             </div>
             <div id="success"></div>
             <!-- For success/fail messages -->
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">Send Message</button>
+            {{-- <button type="button" onclick="performStore()" class="btn btn-primary" id="sendMessageButton">Send Message</button> --}}
+            <button type="button" onclick="performStore()" class="btn btn-primary">Stroe</button>
           </form>
         </div>
         <!-- Contact Details Column -->
@@ -88,6 +89,16 @@
 @endsection
 
 @section('sceipt')
-<script src="{{asset('frond/js/jqBootstrapValidation.js')}}"></script>
+    <script src="{{asset('frond/js/jqBootstrapValidation.js')}}"></script>
     <script src="{{asset('frond/js/contact_me.js')}}"></script>
+    <script>
+        function performStore(){
+        let formData = new FormData ();
+        formData.append('name' , document.getElementById('name').value);
+        formData.append('phone' , document.getElementById('phone').value);
+        formData.append('email' , document.getElementById('email').value);
+        formData.append('message' , document.getElementById('message').value);
+        store('/cms/admin/contacts',formData);
+    }
+    </script>
 @endsection

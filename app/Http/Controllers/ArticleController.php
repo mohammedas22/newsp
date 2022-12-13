@@ -78,7 +78,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $articles = Article::with('category_id')->orderBy('id' ,'desc')->get();
+        return response()->view('cms.articles.show' , compact('articles'));
     }
 
     /**

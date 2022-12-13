@@ -5,11 +5,13 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Contact_requestsController;
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\settingController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\User_authController;
 use App\Http\Controllers\ViewerController;
 use App\Http\Controllers\Website\HomeController;
@@ -59,6 +61,12 @@ Route::prefix('cms/admin/')->middleware('auth:admin')->group(function(){
     Route::post('update_contact_requests/{id}',[Contact_requestsController::class,'update' ])->name('update_contact_requests');
     Route::resource('articles', ArticleController::class);
     Route::post('update_articles/{id}',[ArticleController::class,'update' ])->name('update_articles');
+
+    Route::resource('contacts', ContactsController::class);
+    Route::post('update_contacts/{id}',[ContactsController::class,'update' ])->name('update_contacts');
+
+    Route::resource('sliders', SliderController::class);
+    Route::post('update_sliders/{id}',[SliderController::class,'update' ])->name('update_sliders');
 
     Route::resource('roles', RoleController::class);
     Route::post('update_roles/{id}' , [RoleController::class , 'update'])->name('update_roles');

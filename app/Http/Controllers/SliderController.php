@@ -39,7 +39,7 @@ class SliderController extends Controller
         $validator = validator($request->all(), [
             'title' => 'required|string|min:3|max:40',
             'description' => 'required|string',
-            'seen_count' => 'required|integer',
+        
         ]);
         if (!$validator->fails()) {
             $sliders = new Slider();
@@ -97,7 +97,7 @@ class SliderController extends Controller
         $validator = validator($request->all(), [
             'title' => 'required|string|min:3|max:40',
             'description' => 'required|string',
-            'seen_count' => 'required|integer',
+        
         ]);
         if (!$validator->fails()) {
             $sliders = Slider::findOrFail();

@@ -47,7 +47,6 @@ class AuthorController extends Controller
             $authors = new Author();
             $authors->email = $request->get('email');
             $authors->password = $request->get('password');
-            // $authors->add_files = $request->get('add_files');
             if (request()->hasFile('add_files')) {
                 $file = $request->file('add_files');
                 $fileName = time() . 'add_files.' . $file->getClientOriginalExtension();

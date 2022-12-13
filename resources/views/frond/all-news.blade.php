@@ -33,12 +33,13 @@ $articles = Article::all();
       <div class="row">
         <div class="col-md-7">
           <a href="newsdetailes.html">
-            <img class="img-fluid full-width h-200 rounded mb-3 mb-md-0" src="{{asset('frond/img/1.jpg')}}" alt="">
+            <img class="img-fluid full-width h-200 rounded mb-3 mb-md-0" src="({{asset('storage/images/article/'.$all->images)}})" alt="">
           </a>
         </div>
         <div class="col-md-5">
           <h3>{{$all->title}}</h3>
-          <p>{{$all->show_description}}.</p>
+          <p>{{$all->show_description}}</p>
+          <p>{{$all->full_description}}</p>
           <a class="btn btn-primary" href="{{route('website.det' ,$all->id)}}">View news title
             <span class="glyphicon glyphicon-chevron-right"></span>
           </a>

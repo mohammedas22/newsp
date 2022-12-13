@@ -26,6 +26,7 @@ class HomeController extends Controller
     }
     public function showDet($id){
         $articles = Article::findOrFail($id);  
+        // $categories = Category::findOrFail($id);  
         return view('frond.newsdetailes' , compact('id' ,'articles'));
         
     }

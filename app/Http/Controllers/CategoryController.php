@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $articles = Article::all();
         return response()->view('cms.categories.create');
     }
 
@@ -64,7 +66,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        // $categories = Category::with('article_id')->orderBy('id' ,'desc')->get();
+        // return response()->view('cms.categories.show' , compact('categories'));
     }
 
     /**

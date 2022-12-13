@@ -90,7 +90,7 @@
     function performStore(){
         let formData = new FormData ();
         formData.append('email' , document.getElementById('email').value);
-        formData.append('password' , document.getElementById('password').value);
+        // formData.append('password' , document.getElementById('password').value);
         formData.append('add_files' , document.getElementById('add_files').files[0]);
         formData.append('first_name' , document.getElementById('first_name').value);
         formData.append('last_name' , document.getElementById('last_name').value);

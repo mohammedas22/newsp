@@ -20,7 +20,7 @@ $articles = Article::all();
         @foreach ($sliders as $slider)
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item @if($loop->first) active  @endif" style="background-image: url('{{asset('storage/images/sliders/'.$slider->image)}}')">
+            <div class="carousel-item @if($loop->first) active  @endif" style="background-image: url('{{asset('storage/images/slider/'.$slider->image)}}')">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>{{ $slider->title }}</h3>
                     <p>{{$slider->description}}</p>
@@ -28,19 +28,19 @@ $articles = Article::all();
             </div>
             @endforeach
             <!-- Slide Two - Set the background image for this slide in the line below -->
-            <div class="carousel-item" style="background-image: url('{{asset('frond/img/22.jpg')}}')">
+            {{-- <div class="carousel-item" style="background-image: url('{{asset('frond/img/22.jpg')}}')">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Second title can be here</h3>
                     <p>This is a description for the second slide.</p>
                 </div>
-            </div>
+            </div> --}}
             <!-- Slide Three - Set the background image for this slide in the line below -->
-            <div class="carousel-item" style="background-image: url('{{asset('frond/img/1.jpg')}}')">
+            {{-- <div class="carousel-item" style="background-image: url('{{asset('frond/img/1.jpg')}}')">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Third title can be here</h3>
                     <p>This is a description for the third slide  of news title.</p>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -60,19 +60,19 @@ $articles = Article::all();
         @foreach ($categories as $category )
         <h3 class="my-4">{{$category->name}}</h3>
         @foreach ($articles as $article )
-        @if($articles-> $category_id == $category->id )
+        @if($articles-> $category->id == $category->id )
         <div class="row">
             <div class="col-lg-4 col-sm-6 portfolio-item">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="{{asset('storage/images/articles/'.$article->image)}}" alt=""></a>
+                    <a href="#"><img class="card-img-top" src="{{asset('storage/images/article/'.$article->image)}}" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">{{$articles->title}}</a>
+                            <a href="#">{{$article->title}}</a>
                         </h4>
-                        <p class="card-text">{{$articles->short_description}}</p>
+                        <p class="card-text">{{$article->short_description}}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{route('website.det' , $articles->id )}}" class="btn btn-primary">Learn More</a>
+                        <a href="{{route('website.det' , $article->id )}}" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
             </div>

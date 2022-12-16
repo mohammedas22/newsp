@@ -40,6 +40,9 @@ Route::prefix('cms/')->middleware('guest:admin')->group(function(){
 
 Route::prefix('cms/admin')->middleware('auth:admin')->group(function(){
     Route::get('logout' , [User_authController::class , 'Logout'])->name('cms.admin.logout');
+    Route::get('edit/password' , [settingController::class , 'editPassword'])->name('cms.auth.editPassword');
+    Route::post('update/password' , [settingController::class , 'updatePassword'])->name('cms.auth.updatePassword');
+    
 });
 // ->middleware('auth:admin')
 Route::prefix('cms/admin/')->middleware('auth:admin')->group(function(){
